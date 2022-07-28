@@ -1,0 +1,38 @@
+.boton{
+    background-color: rgb(25, 23, 23);
+    color:white;
+    border-radius: 5px;
+    border: solid 1px rgb(65, 36, 86);
+    width: 30px;
+    height: 30px;
+    margin: 2px;
+    justify-content: center;
+    
+}
+.boton:hover{
+    color: white;
+    background-color:rgb(180, 109, 233);
+    border-radius: 5px;
+    border: solid 1px white;
+    cursor: pointer;
+}
+
+.paginado{
+    margin: 5px;
+   
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .current{
+    background-color: rgb(152, 32, 156);
+    color:white;
+    border-radius: 5px;
+    border: solid 1px rgb(65, 36, 86);
+    width: 30px;
+    height: 30px;
+    margin: 2px;
+    justify-content: center;
+    
+} 

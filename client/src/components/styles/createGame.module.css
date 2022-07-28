@@ -1,0 +1,156 @@
+.radial{
+    background-image: url(../../imgs/background.jpg);
+}
+.createGame{
+    
+    background-image: radial-gradient(rgba(255, 255, 255, 0), black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white
+}
+
+.container{
+    
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80vh;
+    height: 95vh;
+    background-color: rgb(32, 29, 34);
+    border-radius: 15px;
+}
+
+.cajaTexto{
+    padding: 20px;
+    margin: 10px;
+    background-color: rgb(22, 16, 29);
+    border-radius: 15px;
+    border: 2px solid rgb(114, 92, 131);
+    color: rgb(114, 92, 131);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    width: 30%;
+    cursor: pointer;
+}
+
+.cajaTextoBarras{
+    padding: 20px;
+    margin: 10px;
+    background-color: rgb(22, 16, 29);
+    border-radius: 15px;
+    border: 2px solid rgb(114, 92, 131);
+    color: rgb(114, 92, 131);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    width: 50%;
+}
+
+.cajaTexto:hover{
+    border: 2px solid rgb(137, 88, 175);
+}
+
+.checkBoxes{
+    border-radius: 15px;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(23, 23, 23);
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    grid-template-rows: auto;
+    justify-content: space-around;
+}
+
+.individualCheck{
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    color: rgb(148, 94, 188);
+    align-items: center;
+    }
+.box{
+cursor: pointer;
+width: 20px;
+}
+
+.button{
+    background-color: rgb(114, 92, 131);
+    color: white;
+    border-radius: 20px;
+    border: none;
+    width: 90px;
+    height: 45px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.button:hover{
+    background-color: rgb(143, 121, 160);
+    cursor: pointer;
+}
+
+.button:disabled{
+    background-color: rgb(51, 50, 52);
+    color: rgb(164, 160, 160);
+    cursor: default;
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.errors{
+    background-color: salmon;
+    color: rgb(160, 38, 38);
+    border-radius: 15px;
+    border: 2px solid rgb(148, 18, 18);
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 9px;
+    position: absolute;
+    right: 530px
+}
+.errorsS{
+    background-color: salmon;
+    color: rgb(160, 38, 38);
+    border-radius: 15px;
+    border: 2px solid rgb(148, 18, 18);
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 9px;
+    margin-bottom: 1500px;
+    position: absolute;
+    right: 530px;
+    top: 775px;
+    
+    
+}
+.errorsSS{
+    background-color: salmon;
+    color: rgb(160, 38, 38);
+    border-radius: 15px;
+    border: 2px solid rgb(148, 18, 18);
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 9px;
+    top:585px;
+    position: absolute;
+    right: 530px;
+    
+    
+}
+
+.contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}

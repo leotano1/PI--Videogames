@@ -1,0 +1,196 @@
+.fondo{
+  background-image: url(../../imgs/background.jpg);
+  background-size: 100%;
+}
+
+.ordenador{
+    height: 5vh;
+    display: grid;
+    flex-direction: row;
+    
+    text-align: center;
+    padding: 1%;
+    background-color: rgb(17, 10, 26);
+    background-image: linear-gradient( to top left, rgb(19, 10, 32),rgb(60, 44, 83) );
+    grid-template-columns: 10% 10% 10% auto auto auto;
+    grid-template-rows: auto;
+    align-items: center;
+}
+
+.select{
+  border-radius: 7px;
+  color:rgb(219, 200, 255);
+  background-color: rgb(25, 17, 42);
+    border: solid 1px rgb(110, 94, 141);
+    padding: 5px 3px 5px 5px;
+    margin: 3px;
+}
+.select:hover{    
+    border: solid 1px white;
+}
+
+
+  .searchbar{
+    width: 200px;
+    height: 23px;
+    color:rgb(219, 200, 255);
+    background-color: rgb(11, 5, 23);
+    border: solid 1px rgb(110, 94, 141);
+    padding: 5px 3px 5px 5px;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    
+  }
+
+  .searchButton{
+    width: 40px;
+    height: 35px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    color:rgb(219, 200, 255);
+    background-color: rgb(11, 5, 23);
+    border: solid 1px rgb(110, 94, 141);
+    padding: 5px 3px 5px 5px;
+    
+  }
+
+  .searchbar:hover{    
+    border: solid 1px white;
+}
+.searchButton:hover{    
+  border: solid 1px white;
+  color: white;
+}
+
+/* TAMAÑO DE LA CARTA Y DISTANCIAS ENTRE CARTAS */
+
+.Card{
+    width: 230px;
+    height:250px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    margin: 2px;
+}
+
+/* BODY COLOR */
+
+.cardsPaginate{
+    height: 90vh;
+    align-content: center;
+    justify-content: center;
+    background-image: radial-gradient(rgba(255, 255, 255, 0),rgb(0, 0, 0));
+    display: grid;
+    justify-content: space-evenly; 
+    grid-template-columns: 5% auto auto auto auto auto 5%;
+    grid-template-rows: auto auto auto auto auto auto auto ;
+    align-content: space-between
+  }
+
+  .prevButton{
+    font-size: xx-large;
+    color: rgba(176, 176, 176, 0.427);
+    background-color: transparent;
+    grid-row: 1/9;
+    grid-column: 1;
+    height: 100%;
+    width: 100%;
+    border: none;
+  }
+
+  .prevButtonDiv{
+    grid-row: 1/9;
+    grid-column: 1;
+    height: 100%;
+    width: 100%;
+  }
+
+  .nextButton{
+    font-size: xx-large;
+    color: rgba(176, 176, 176, 0.539);
+    background-color: transparent;
+    grid-row: 1/9;
+    grid-column: 7;
+    height: 100%;
+    width: 100%;
+    border: none;
+  }
+
+  .nextButtonDiv{
+    grid-row: 1/9;
+    grid-column: 7;
+    height: 100%;
+    width: 100%;
+
+  }
+
+  .prevButton:hover{
+    color: rgba(255, 255, 255, 0.703);
+    background-color: rgba(255, 255, 255, 0.145);
+    cursor: pointer;
+  }
+  .nextButton:hover{
+    color: rgba(255, 255, 255, 0.703);
+    background-color:  rgba(255, 255, 255, 0.145);
+    cursor: pointer;
+  }
+
+  .prevButton:disabled{
+    cursor: default;
+    color: transparent;
+    background-color: transparent;
+  }
+  .nextButton:disabled{
+    cursor: default;
+    color: transparent;
+    background-color: transparent;
+  }
+
+
+  .paginado{
+    height: 5vh;
+    background-color: rgb(17, 10, 26);
+    display: flex;
+    justify-content: center;
+  }
+
+  
+.button{
+  background-color: rgb(114, 92, 131);
+  border-radius: 15px;
+  color: white;
+  border: none;
+  width: 110px;
+  height: 45px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button:hover{
+  background-color: rgb(143, 121, 160);
+  cursor: pointer;
+}
+
+.loading{
+  border-radius: 50%;
+  box-shadow: 0 0 35px rgb(191, 108, 255);
+  width: 400px;
+  height: 400px;
+  animation: loading 16s infinite;
+}
+@keyframes loading {
+ 100%{
+  transform: rotate(1560deg);
+ }
+ 
+}
+
+.contenedorLoading{
+  width: 75vw;
+  height: 80vh;
+display: flex;
+justify-content: center;
+align-items: center;
+}

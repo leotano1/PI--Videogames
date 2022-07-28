@@ -1,0 +1,72 @@
+.card {
+
+  margin: 2%;
+  width: 260px;
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+  /* background-color: rgb(58, 48, 81); */
+  background-image: linear-gradient( to top left, rgb(19, 10, 32),rgb(60, 44, 83) );
+  border-radius: 15px;
+  position: relative;
+  transition: 0.5s;
+  color: white;
+  border: 1px solid rgb(72, 72, 72);
+}
+
+.img {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  width: 100%;
+  height: 70%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.card:hover {
+  filter: blur(none);
+  transform: translateY(-7px);
+  box-shadow: 0px 12px 15px 0px rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  background-color: rgb(104, 88, 142);
+  background-image: linear-gradient( to bottom, rgb(234, 158, 255),rgb(80, 64, 119) );
+}
+
+.genreBox {
+  display: flex;
+  flex-direction: row;
+  padding: 2px;
+  justify-content: center;
+  flex-wrap: wrap
+}
+
+.genres {
+  font-size: 15px;
+  color: rgb(224, 224, 224);
+  margin: 0px;
+  margin-left: 7px;
+  text-align: left;
+
+}
+
+.titulo {
+  font-weight: bold;
+  font-size: 15px;
+  margin: 0px;
+}
+
+.rating {
+  font-size: 20px;
+  display: flex;
+  padding-left: 10px;
+  margin-left: 10px;
+  font-weight: bold;
+  color: rgb(238, 199, 83);
+  margin: 0px;
+  position: absolute;
+  text-shadow: 1px 1px 3px rgb(0, 0, 0);
+}
+
+.partedeabajo {
+  padding: 10px;
+}
