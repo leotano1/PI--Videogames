@@ -32,10 +32,63 @@ const infodelApi100 = async () =>{
     return juegos
 }
 
-////////////////////////////////////////////// GET CHIQUITO CON API Y DB /////////////////////////////////////////////////////
+///////////////////////////////// FUNCION BUSQUEDA EN LA API POR NOMBRE (cancelado) //////////////////////////////////////////
+
+const apiByName = async (prop) =>{
+    let url = `https://api.rawg.io/api/games?key=${API_KEY}&search=${prop}`
+    const arr = await axios.get(url)
+    const apiGames = arr.data.results
+    let juegos = []
+    apiGames.map( e => juegos.push({
+
+        id: e.id,
+        name: e.name,
+        image: e.background_image,
+        releaseDate: e.released,
+        rating: e.rating,
+        description: e.description,
+        platforms: e.platforms.map(d => d.platform.name),
+        genres: e.genres.map(d=>d.name)
+
+    }))
+    return juegos
+}
+
+//////////////////////////////////////   GET BY NAME POR QUERY A LA API  (cancelado)  ///////////////////////////////////////////////////////////
+
+router.get("/", async (req,res)=>{
+    const {name} = req.query
+    
+    if(name !== undefined){
+        console.log("entre al if")
+        const capo = await apiByName(name)
+        if(capo.length !== 0){
+        try {
+            let arr15 = capo.slice(0,15)
+            res.json(arr15)
+        } catch (error) {
+            res.send(error)
+        }} else {
+            return res.send("no hay coincidencias por nombre")
+        }
+    } else{
+    try {
+        console.log("no entro al if")
+        const createdGames = await Videogame.findAll()
+        const apiGames = await infodelApi100()
+        const capo = createdGames.concat(apiGames)
+         res.json(capo)
+     } catch (error) {
+         res.send(error)
+     }}
+})
+
+
+////////////////////////////////////////////// GET CHIQUITO CON API Y DB (Get allGames) ///////////////////////////////////////////////////
 
 router.get("/", async (req,res)=>{
 try {
+    console.log("entro al get normal")
     const createdGames = await Videogame.findAll({
         include:[{ model: Genre, attributes:["name"],
         through:{attributes:[]} }]
@@ -48,7 +101,7 @@ try {
  }
 })
 
-/////////////////////////////////////////  GAME POR ID DESDE :PARAMS (detail game) ///////////////////////////////////////////////////
+////////////////////////////////////////////  GAME POR ID DESDE :PARAMS (Get detail game) ////////////////////////////////////////////////
 
 router.get("/:id", async (req,res)=>{
     const {id} = req.params
@@ -91,10 +144,6 @@ router.get("/:id", async (req,res)=>{
 
 //////////////////////////////////////////    RUTA POST GAME EN DATA BASE    /////////////////////////////////////////////////////////
 
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 router.post("/",async (req,res)=>{
     const {name,description,rating,image,platforms,genre,date} = req.body
     if(!name||!description||!rating||!image||!platforms||!genre){ throw "Falta enviar datos obligatorios"}
@@ -106,23 +155,29 @@ router.post("/",async (req,res)=>{
 
     if(juegoExiste){
 
+        let obj = {name,description,rating,image,platforms,releaseDate:date}
         let genero = await Genre.findAll({
             where:{name:genre}
         })
-
+        try{
+        await Videogame.update({name,description,rating,image,platforms,releaseDate:date},{
+            where:{name}
+         })
         let juegoGenre = await juegoExiste.addGenres(genero)
         res.json(juegoGenre)
+        }catch(error){
+            res.send(error)
+        }
     }else{
 
         let genero = await Genre.findAll({
             where:{name:genre}
         })
-
         let obj = {name,description,rating,image,platforms,releaseDate:date}
-
         try {
             const newGame = await Videogame.create(obj)
             let juegoGenre = await newGame.addGenres(genero)
+            console.log("estoy en la creacion del new game", newGame)
             res.json(juegoGenre)
         } catch (error) {
             
@@ -144,55 +199,6 @@ router.post("/",async (req,res)=>{
          res.send(error)
      }}
 ) */
-
-///////////////////////////////// FUNCION BUSQUEDA EN LA API POR NOMBRE (cancelado) //////////////////////////////////////////
-
-/* const apiByName = async (prop) =>{
-    let url = `https://api.rawg.io/api/games?key=${API_KEY}&search=${prop}`
-    const arr = await axios.get(url)
-    const apiGames = arr.data.results
-    let juegos = []
-    apiGames.map( e => juegos.push({
-
-        id: e.id,
-        name: e.name,
-        image: e.background_image,
-        releaseDate: e.released,
-        rating: e.rating,
-        description: e.description,
-        platforms: e.platforms.map(d => d.platform.name),
-        genres: e.genres.map(d=>d.name)
-
-    }))
-    return juegos
-} */
-
-//////////////////////////////////////   GET BY NAME POR QUERY A LA API  (cancelado)  ///////////////////////////////////////////////////////////
-
-/* router.get("/", async (req,res)=>{
-    const {name} = req.query
-    
-    if(name !== undefined){
-        const capo = await apiByName(name)
-        if(capo.length !== 0){
-        try {
-            let arr15 = capo.slice(0,15)
-            res.json(arr15)
-        } catch (error) {
-            res.send(error)
-        }} else {
-            return res.send("no hay coincidencias por nombre")
-        }
-    } else{
-    try {
-        const createdGames = await Videogame.findAll()
-        const apiGames = await infodelApi100()
-        const capo = createdGames.concat(apiGames)
-         res.json(capo)
-     } catch (error) {
-         res.send(error)
-     }}
-}) */
 
 
 

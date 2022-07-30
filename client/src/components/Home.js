@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllGames, getGameByName, clearSearch, sortGameByName, sortGameGenre, clearDetail, clearAllGames } from "../actions";
+import { getAllGames, getGameByName, clearSearch, sortGameByName, sortGameGenre, clearDetail, clearAllGames, badSearch } from "../actions";
 import estilo from "./styles/home.module.css"
 import Paginacion from "./paginacion";
 import VideoGameCard from "./VideoGameCard"
 import { Link } from "react-router-dom";
 import loadingLogo from "../imgs/loading.png"
+import notfound from "../imgs/notfound.png"
+
 
 export default function Home() {
 
@@ -14,6 +16,7 @@ export default function Home() {
 
     const [search, setSearch] = useState({ name: "" }) /// estado del buscador ///
     const [pagina, setPagina] = useState(1)            /// estado del paginado ///
+    const [loading, setLoading] = useState(false)
 
 
     ////////////////////////   ME TRAIGO EL ESTADO GLOBAL  //////////////////////////////   
@@ -25,19 +28,17 @@ export default function Home() {
 
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(getAllGames())
-        return () => {
+        dispatch(getAllGames(setLoading))
+        /* return () => {
             dispatch(clearAllGames())
-            
-        }
-    }, [dispatch, gamesByName])
-    /* useEffect(() => { dispatch(clearDetail())}, [dispatch,gamesByName]) */
-
+        } */
+    }, [])
+   
 
     //////////////////////////////////////////////////////////////////////////////////////////
-
+    console.log(loading)
     const porPagina = 15
-    let maximo = Math.round((gamesByName.length === 0 ? allGames : gamesByName).length / porPagina)
+    let maximo = Math.round( gamesByName.length / porPagina)
 
     //////////////////////////// FUNCIONES DEL BUSCADOR ///////////////////////////////// 
 
@@ -64,7 +65,7 @@ export default function Home() {
         e.preventDefault()
         setPagina(1)
         dispatch(clearSearch())
-        dispatch(getGameByName(search.name))
+        dispatch(getGameByName(setLoading,search.name))
     }
 
     function clear() {
@@ -85,6 +86,7 @@ export default function Home() {
         let gameSorted = allGames.filter(g => g.genres.includes(e.target.value))
         dispatch(sortGameGenre(gameSorted))
         setPagina(1)
+        
     }
 
     ////////////////////////////////////////  ORDENAMIENTO ALFABETICO  //////////////////////////////////////////////
@@ -225,13 +227,15 @@ export default function Home() {
             </div>
 
 
-
-            {allGames.length === 0 ?
+            
+            {loading?
                 <div className={estilo.cardsPaginate}>
                     <div className={estilo.contenedorLoading}><img className={estilo.loading} src={loadingLogo} alt="loading" /> </div>
                 </div>
                 :
 
+                    gamesByName.length > 0  ?       
+                    
                 <div className={estilo.cardsPaginate}>
                     <div className={estilo.prevButtonDiv}> <button onClick={prevPage} disabled={disablePrev()} className={estilo.prevButton}>❮</button></div>
                     <div className={estilo.nextButtonDiv}> <button onClick={nextPage} disabled={disableNext()} className={estilo.nextButton}>❯</button></div>
@@ -243,6 +247,10 @@ export default function Home() {
                         </div>
 
                     )}
+                </div>
+                : 
+                <div className={estilo.cardsPaginate}>
+                <div className={estilo.notfound}><img src={notfound} alt="notfound" /> </div>
                 </div>
             }
 

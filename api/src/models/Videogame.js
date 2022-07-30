@@ -16,17 +16,20 @@ module.exports = (sequelize) => {
       unique: true
     },
     description: {
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
+      defaultValue: "No description"
     },
     rating: {
-      type: DataTypes.FLOAT
+      type: DataTypes.FLOAT,
+      defaultValue: 5
     },
     releaseDate: {
       type: DataTypes.DATEONLY,
       defaultValue: DataTypes.NOW
     },
     image:{
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      
     },
     platforms:{
       type: DataTypes.ARRAY(DataTypes.STRING)

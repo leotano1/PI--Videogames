@@ -155,6 +155,7 @@ export default function CreateGame() {
                             {errors.description && (<label className={estilo.errors}>{errors.description}</label>)}
                         </div>
 
+                            <label className={estilo.label}>Release Date:</label>
                         <div className={estilo.contenedor}>
                             <input className={estilo.cajaTexto} type="date" name="date" value={form.date} onChange={onChange}></input>
                             <select className={estilo.cajaTexto} name="rating" value={form.rating} onChange={onChange}>
@@ -168,7 +169,7 @@ export default function CreateGame() {
                             {errors.rating && (<label className={estilo.errors}>{errors.rating}</label>)}
                         </div>
                         <div>
-                            <label>Genres:</label>
+                            <label className={estilo.label}>Genres:</label>
                             <div className={estilo.checkBoxes}>
                                 {allGenres.map((e, index) =>
                                     <div className={estilo.individualCheck} key={index}>
@@ -178,7 +179,7 @@ export default function CreateGame() {
                             </div>
                             {errors.genre && (<label className={estilo.errorsSS}>{errors.genre}</label>)}
                         </div>
-                        <label>Platforms:</label>
+                        <label className={estilo.label}>Platforms:</label>
                         <div className={estilo.checkBoxes}>
                             {plataformas.map((e, index) =>
                                 <div className={estilo.individualCheck} key={index} >

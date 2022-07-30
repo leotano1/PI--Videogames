@@ -9,13 +9,16 @@ export const SORT_GAME_GENRE = "SORT_GAME_GENRE"
 export const GET_ALL_GENRES = "GET_ALL_GENRES"
 export const CLEAR_DETAIL = "CLEAR_DETAIL"
 export const CLEAR_ALL_GAMES = "CLEAR_ALL_GAMES"
+export const BAD_SEARCH = "BAD_SEARCH"
 
-export function getAllGames() {
+export function getAllGames(setLoading) {
     return function (dispatch) {
-      return fetch(`http://localhost:3001/games`)
+      setLoading(true)
+      return fetch(`http://localhost:3001/videogames`)
       .then(response => response.json() )
       
       .then(json => {dispatch({ type: GET_ALL_GAMES, payload: json })
+      setLoading(false)
         
       });
     };
@@ -34,7 +37,7 @@ export function getAllGames() {
 
   export function getGameDetail(id) {
     return function (dispatch) {
-      return fetch(`http://localhost:3001/games/${id}`)
+      return fetch(`http://localhost:3001/videogames/${id}`)
       .then(response => response.json())
       .then(json => {dispatch({ type: GET_GAME_DETAIL, payload: json })
         
@@ -43,8 +46,11 @@ export function getAllGames() {
   }
 
   export function createGame(payload){
+    if(!payload.date){
+      payload.date = Date.now();
+    }
     return function (dispatch){
-    return  axios.post('http://localhost:3001/games', 
+    return  axios.post('http://localhost:3001/videogames', 
     {
       name: payload.name,
       description: payload.description,
@@ -64,24 +70,25 @@ export function getAllGames() {
 
 
 
-  /* export function getGameByName(name) {
+  export function getGameByName(setLoading,name) {
     return function (dispatch) {
-      return fetch(`http://localhost:3001/games?name=${name}`)
+      setLoading(true)
+      return fetch(`http://localhost:3001/videogames?name=${name}`)
       .then(response => response.json())
       .then(json => {dispatch({ type: GET_GAME_BY_NAME, payload: json })
-        
+      setLoading(false)  
       });
     };
-  } */
+  }
 
-  export function getGameByName(name){
+/*   export function getGameByName(name){
       
     return {
       type: GET_GAME_BY_NAME,
       payload: name
     }
 
-  }
+  } */
 
   export function clearSearch(){
       
@@ -119,6 +126,14 @@ export function getAllGames() {
   export function sortGameGenre(array){
     return {
       type: SORT_GAME_GENRE,
+      payload: array
+    }
+
+  }
+
+  export function badSearch(array){
+    return {
+      type: BAD_SEARCH,
       payload: array
     }
 

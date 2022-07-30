@@ -1,4 +1,4 @@
-import { GET_ALL_GAMES, GET_GAME_DETAIL, GET_GAME_BY_NAME,SORT_GAME,CLEAR,CREATE_GAME,SORT_GAME_GENRE,GET_ALL_GENRES, CLEAR_DETAIL,CLEAR_ALL_GAMES } from "../actions"
+import { GET_ALL_GAMES, GET_GAME_DETAIL, GET_GAME_BY_NAME,SORT_GAME,CLEAR,CREATE_GAME,SORT_GAME_GENRE,GET_ALL_GENRES, CLEAR_DETAIL,CLEAR_ALL_GAMES, BAD_SEARCH } from "../actions"
 
 
 const initialState = {
@@ -6,7 +6,8 @@ const initialState = {
     gamesByName: [],
     gameDetail: {},
     createdGames: [],
-    allGenres: []
+    allGenres: [],
+    badSearch: []
 }
 
 export default function reducer(state = initialState, {type, payload}){
@@ -14,7 +15,8 @@ export default function reducer(state = initialState, {type, payload}){
             case GET_ALL_GAMES:   
             return {
                 ...state,
-                allGames: payload
+                allGames: payload,
+                gamesByName: payload
             }
             case GET_GAME_DETAIL:
             return {
@@ -23,8 +25,9 @@ export default function reducer(state = initialState, {type, payload}){
             }  
             case GET_GAME_BY_NAME:
                 return{
-                    ...state,
-                    gamesByName: state.allGames.filter(e=> e.name.toLocaleLowerCase().includes(payload.toLocaleLowerCase()))
+                    ...state,/* 
+                    gamesByName: state.allGames.filter(e=> e.name.toLocaleLowerCase().includes(payload.toLocaleLowerCase())) */
+                    gamesByName: payload
                 }
             case SORT_GAME:
                 return {
@@ -61,6 +64,11 @@ export default function reducer(state = initialState, {type, payload}){
                     ...state,
                     allGenres: payload
                 }
+            case BAD_SEARCH:
+                return{
+                    ...state,
+                    badSearch: payload
+                } 
             default: return state
     }
 }

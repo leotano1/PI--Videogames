@@ -194,3 +194,11 @@ display: flex;
 justify-content: center;
 align-items: center;
 }
+
+.notfound{
+  width: 75vw;
+  height: 80vh;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+}
