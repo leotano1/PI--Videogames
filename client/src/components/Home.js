@@ -36,7 +36,7 @@ export default function Home() {
    
 
     //////////////////////////////////////////////////////////////////////////////////////////
-    console.log(loading)
+    
     const porPagina = 15
     let maximo = Math.round( gamesByName.length / porPagina)
 
