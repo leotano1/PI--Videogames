@@ -124,6 +124,7 @@ router.get("/", async (req, res) => {
         })
         const apiGames = await infodelApi100()
         const capo = createdGames.concat(apiGames)
+        console.log(apiGames)
         res.json(capo)
     } catch (error) {
         res.send(error)
